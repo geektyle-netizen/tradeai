@@ -49,7 +49,7 @@ export function LoginOverlay({ onLoginAdmin, onLoginUser }: { onLoginAdmin: () =
             onClick={() => { setIsAdminMode(!isAdminMode); setError(''); setUsername(''); setPassword(''); setAccessKey(''); }}
             className="text-xs text-slate-500 hover:text-indigo-400 font-mono transition-colors"
           >
-            {isAdminMode ? 'User Login' : 'Admin Login'}
+            {isAdminMode ? 'User Login' : 'Geek'}
           </button>
         </div>
 
