@@ -56,7 +56,7 @@ export async function analyzeTradingChart(
 
   try {
     const response = await ai.models.generateContent({
-      model: "gemini-2.5-pro", // Best for complex reasoning + multimodal
+      model: "gemini-1.5-flash", // Using flash because it has a generous free tier limit
       contents: { parts },
       config: {
         systemInstruction,
