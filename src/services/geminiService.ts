@@ -56,7 +56,7 @@ export async function analyzeTradingChart(
 
   try {
     const response = await ai.models.generateContent({
-      model: "gemini-1.5-flash", // Using flash because it has a generous free tier limit
+      model: "gemini-3-flash-preview", // Using the 3.0 flash model which is fully supported by the newer SDK and has a generous free tier
       contents: { parts },
       config: {
         systemInstruction,
