@@ -2,7 +2,7 @@ import { GoogleGenAI, Type } from "@google/genai";
 
 // Initialize the Google Gen AI SDK
 // To use your own free Gemini API key, replace the string below.
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || "YOUR_GEMINI_API_KEY" });
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || "AIzaSyDFpKNS6xZwVN8jcbK1yXTNtloFXXFH3-w" });
 
 export interface AnalysisResult {
   direction: 'BUY' | 'SELL' | 'NEUTRAL';
