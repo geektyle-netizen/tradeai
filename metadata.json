@@ -1,0 +1,6 @@
+{
+  "name": "Trading Strategy Analyzer",
+  "description": "Upload trading chart screenshots and analyze them with AI using specific trading strategies to find Entry, Stop Loss, and Take Profit points.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}

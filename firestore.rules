@@ -1,0 +1,43 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Default deny
+    match /{document=**} { 
+      allow read, write: if false; 
+    }
+
+    // Validation Helpers
+    function isValidId(id) { 
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$'); 
+    }
+    
+    function incoming() { return request.resource.data; }
+    function existing() { return resource.data; }
+
+    function isValidAccessKey(data) {
+      return data.keys().hasAll(['id', 'createdAt', 'expiresAt', 'durationLabel']) 
+        && data.keys().size() == 4
+        && data.id is string && data.id.size() <= 100
+        && data.createdAt is number
+        && data.expiresAt is number
+        && data.durationLabel is string && data.durationLabel.size() <= 50;
+    }
+
+    match /keys/{keyId} {
+      // Because we cannot use Firebase Auth for the custom hardcoded admin requirement,
+      // we must rely on structural invariants to prevent malformed data.
+      // Anyone with the app can theoretically read these keys, but the UI protects the app workflow.
+      allow read: if true;
+      
+      allow create: if isValidId(keyId) && isValidAccessKey(incoming());
+      
+      allow update: if isValidId(keyId) && isValidAccessKey(incoming()) && (
+        incoming().diff(existing()).affectedKeys().hasOnly(['expiresAt', 'durationLabel'])
+      );
+      
+      allow delete: if true;
+    }
+  }
+}

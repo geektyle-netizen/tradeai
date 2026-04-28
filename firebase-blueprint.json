@@ -1,0 +1,22 @@
+{
+  "entities": {
+    "AccessKey": {
+      "title": "AccessKey",
+      "description": "A generated license key for users to access the app.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "The unique key string" },
+        "createdAt": { "type": "number", "description": "Timestamp of creation" },
+        "expiresAt": { "type": "number", "description": "Timestamp of expiration" },
+        "durationLabel": { "type": "string", "description": "Display label for duration" }
+      },
+      "required": ["id", "createdAt", "expiresAt", "durationLabel"]
+    }
+  },
+  "firestore": {
+    "/keys/{keyId}": {
+      "schema": "AccessKey",
+      "description": "Collection storing access keys."
+    }
+  }
+}
